@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.coolcoder.batteryalarm",
+    "sha256_cert_fingerprints":
+    ["54:7D:5D:62:66:9E:93:75:C0:2C:A1:E7:83:C9:E9:18:A0:EB:D1:59:39:41:99:CA:81:15:A0:82:C6:21:80:BF"]
+  }
+}]
