@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authorizing...</title>
+    <script type="text/javascript">
+        function handleRedirect() {
+            // Get the full URL from the browser's address bar
+            const url = new URL(window.location.href);
+
+            // Find the 'code' parameter provided by SmartThings
+            const code = url.searchParams.get("code");
+            const error = url.searchParams.get("error");
+            const errorDescription = url.searchParams.get("error_description");
+
+            let appUri = "batteryalarm://callback"; // Your app's custom scheme
+
+            if (code) {
+                appUri += "?code=" + encodeURIComponent(code);
+            } else if (error) {
+                appUri += "?error=" + encodeURIComponent(error) + "&error_description=" + encodeURIComponent(errorDescription);
+            }
+
+            // Try to open your app
+            window.location.href = appUri;
+
+            // Fallback for desktop users or if the app isn't installed
+            setTimeout(function() {
+                document.getElementById("message").innerText = "Authorization complete. Please return to the Battery Alarm app. If you are not redirected automatically, you may close this window.";
+            }, 500);
+        }
+    </script>
+</head>
+<body onload="handleRedirect()">
+    <p id="message">Please wait, redirecting you back to the app...</p>
+</body>
+</html>
